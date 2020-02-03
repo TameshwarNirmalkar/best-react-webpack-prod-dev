@@ -1,9 +1,12 @@
 {
   "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
   "trailingComma": "all",
-  "prettier/prettier": ["error", {
-    "endOfLine":"auto",
-    "usePrettierrc": false
-  }],
-  "class-methods-use-this": [false]
+  "endOfLine": "auto",
+  "usePrettierrc": true,
+  "class-methods-use-this": [
+    false
+  ]
 }

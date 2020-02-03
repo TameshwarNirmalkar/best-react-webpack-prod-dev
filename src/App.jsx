@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
 import HelloWorld from './components/hello-world';
 import butterfly from './resource/images/butterfly.png';
+import VehicleChangeComponent from './components/vehicle-change/vehicle-change-component';
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class App extends Component {
         <img src={butterfly} alt="butterfly" />
         {this.getTitleState()}
         <HelloWorld title="Hello from React webpack" />
+        <VehicleChangeComponent />
       </div>
     );
   }
