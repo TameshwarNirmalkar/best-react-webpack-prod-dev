@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
+import style from './vehicle-change.scss';
 
 const VehicleChangeComponent = () => {
   return (
     <Fragment>
-      <div className="vehicle-comp">
+      <div className={style['vehicle-comp']}>
         <div className="container">
           <div className="row">
             <div className="col"> Select Model </div>

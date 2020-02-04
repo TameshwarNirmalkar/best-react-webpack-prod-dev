@@ -25,7 +25,17 @@ module.exports = {
               },
             },
           },
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sassOptions: {
+                indentWidth: 4,
+                outputStyle: 'compressed',
+                includePaths: [commonPaths.root],
+              }
+            },
+          }
         ],
       },
     ],
