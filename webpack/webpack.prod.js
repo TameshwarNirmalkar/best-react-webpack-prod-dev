@@ -60,6 +60,8 @@ module.exports = {
               localsConvention: 'camelCase',
               modules: {
                 localIdentName: '[local]___[hash:base64:5]',
+                mode: 'global',
+                context: commonPaths.srcPath
               },
             },
           },

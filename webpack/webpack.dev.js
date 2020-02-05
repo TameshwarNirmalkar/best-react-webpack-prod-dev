@@ -21,21 +21,13 @@ module.exports = {
               sourceMap: true,
               localsConvention: 'camelCase',
               modules: {
-                localIdentName: '[local]___[hash:base64:5]',
-              },
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              sassOptions: {
-                indentWidth: 4,
-                outputStyle: 'compressed',
-                includePaths: [commonPaths.root],
+                mode: 'global',
+                localIdentName: '[local]__[hash:base64:5]',
+                context: commonPaths.srcPath
               }
             },
-          }
+          },
+          'sass-loader'
         ],
       },
     ],
