@@ -65,7 +65,6 @@
         "eventHandlerPropPrefix": "on"
       }
     ],
-    "react/jsx-indent": ["warn", 2],
     "react/jsx-key": "error",
     "react/jsx-wrap-multilines": ["warn"],
     "react/jsx-indent-props": 0,
@@ -83,7 +82,7 @@
     "import/extensions": 0,
     "babel/object-curly-spacing": 0,
     "class-methods-use-this": 0,
-    "prettier/prettier": "error"
+    "prettier/prettier": "off"
   },
   "env": {
     "es6": true,
