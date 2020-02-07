@@ -17,8 +17,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <img src={butterfly} alt="butterfly" />
-        {this.getTitleState()}
+        {/* <img src={butterfly} alt="butterfly" />
+        {this.getTitleState()} */}
         <HelloWorld title="Hello from React webpack" />
         <VehicleChangeComponent />
       </div>

@@ -1,6 +1,8 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useReducer, useEffect, useState } from 'react';
 import Select from 'react-select';
 import styles from './vehicle-change.scss';
+import { reducer, initialState } from './reducer';
+import { VEHICLE_TYPES } from './action-type';
 
 const options = [
   { value: '1', label: 'Emp1' },
@@ -9,31 +11,31 @@ const options = [
 ];
 
 const VehicleChangeComponent = () => {
-  const [selectedOption, setSelectedOption] = useState({ value: '2', label: 'Emp2' });
-  const [masterData, setMasterData] = useState({
-    masterField: {
-      fieldOne: "a",
-      fieldTwo: {
-        fieldTwoOne: "b",
-        fieldTwoTwo: "c",
-      }
-    }
-  });
+  const [vehicleState, dispatch] = useReducer(reducer, initialState);
+  console.log('vehicleState::', vehicleState);
 
-  const handleChange = async (val) => {
+  const [selectedOption, setSelectedOption] = useState();
+
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/todos`).then(response => response.json()).then(res => {
+      dispatch({
+        type: VEHICLE_TYPES.ALL_MODELS,
+        paylod: res
+      });
+    });
+  }, []);
+
+  const handleChange = (val) => {
     const selOp = { value: val.value, label: val.label };
-    // setSelectedOption(selOp);
-    const valAwait = await setSelectedOption(prevState => ({ ...prevState, value: val.value, label: val.label }));
-    console.log('selectedOption:::', selectedOption, valAwait);
-
-    fetch(`https://jsonplaceholder.typicode.com/todos/${selectedOption.value}`)
+    setSelectedOption(selOp);
+    fetch(`https://jsonplaceholder.typicode.com/todos/${val.value}`)
       .then(response => response.json())
       .then(res => {
         console.log('REsponse: ', res);
-        const data = {
-          masterField: { ...res }
-        };
-        setMasterData({ ...masterData, ...data });
+        dispatch({
+          type: VEHICLE_TYPES.VEHICLE_INFO,
+          paylod: { ...res }
+        });
       });
 
 
@@ -54,10 +56,38 @@ const VehicleChangeComponent = () => {
             </div>
             <div className="col">
               Select Variant
-              {JSON.stringify(masterData)}
+            </div>
+            <div className="w-100 mt-2" />
+            <div className="col-12">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Complete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    vehicleState.modelList.map((emp, ind) => (
+                      <tr key={ind}>
+                        <th>{emp.id}</th>
+                        <td>{emp.title}</td>
+                        <td>
+                          <button type="button" className="close" aria-label="Close">
+                            <span aria-hidden="true">
+                              {(emp.completed) ? '♠' : '»'}
+                            </span>
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
+
             </div>
             <div className="w-100" />
-            <div className="col"> col </div>
             <div className="col"> col </div>
           </div>
         </div>
