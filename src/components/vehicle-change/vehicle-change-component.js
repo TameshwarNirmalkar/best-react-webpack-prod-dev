@@ -1,5 +1,7 @@
 import React, { Fragment, useReducer, useEffect, useState } from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
+
 import styles from './vehicle-change.scss';
 import { reducer, initialState } from './reducer';
 import { VEHICLE_TYPES } from './action-type';
@@ -10,19 +12,29 @@ const options = [
   { value: '3', label: 'Emp3' },
 ];
 
-const VehicleChangeComponent = () => {
+const VehicleChangeComponent = (props) => {
   const [vehicleState, dispatch] = useReducer(reducer, initialState);
-  console.log('vehicleState::', vehicleState);
-
   const [selectedOption, setSelectedOption] = useState();
 
+  const { preFilledData } = props;
+
   useEffect(() => {
+    dispatch({
+      type: VEHICLE_TYPES.VEHICELE_INFO,
+      paylod: preFilledData
+    });
+  }, []);
+
+  useEffect(() => {
+
+    // console.log('Prefilled selected Data:::', vehicleState);
     fetch(`https://jsonplaceholder.typicode.com/todos`).then(response => response.json()).then(res => {
       dispatch({
         type: VEHICLE_TYPES.ALL_MODELS,
         paylod: res
       });
     });
+
   }, []);
 
   const handleChange = (val) => {
@@ -31,7 +43,7 @@ const VehicleChangeComponent = () => {
     fetch(`https://jsonplaceholder.typicode.com/todos/${val.value}`)
       .then(response => response.json())
       .then(res => {
-        console.log('REsponse: ', res);
+        // console.log('REsponse: ', res);
         dispatch({
           type: VEHICLE_TYPES.VEHICLE_INFO,
           paylod: { ...res }
@@ -69,8 +81,8 @@ const VehicleChangeComponent = () => {
                 </thead>
                 <tbody>
                   {
-                    vehicleState.modelList.map((emp, ind) => (
-                      <tr key={ind}>
+                    vehicleState.modelList.map((emp) => (
+                      <tr key={emp.id}>
                         <th>{emp.id}</th>
                         <td>{emp.title}</td>
                         <td>
@@ -94,6 +106,14 @@ const VehicleChangeComponent = () => {
       </div>
     </Fragment>
   );
+};
+
+VehicleChangeComponent.propTypes = {
+  preFilledData: {
+    DMSModelCode: PropTypes.string,
+    DMSVariantCode: PropTypes.string,
+    id: PropTypes.number,
+  },
 };
 
 export default VehicleChangeComponent;

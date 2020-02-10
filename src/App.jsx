@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
 import HelloWorld from './components/hello-world';
-import butterfly from './resource/images/butterfly.png';
+// import butterfly from './resource/images/butterfly.png';
 import VehicleChangeComponent from './components/vehicle-change/vehicle-change-component';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      vehicleData: {
+        DMSModelCode: 'MUZ',
+        DMSVariantCode: 'MU300',
+        id: 2,
+      },
+    };
   }
 
   getTitleState() {
@@ -15,12 +21,15 @@ class App extends Component {
   }
 
   render() {
+    const { vehicleData } = this.state;
     return (
       <div>
         {/* <img src={butterfly} alt="butterfly" />
         {this.getTitleState()} */}
+        NODE Environment : {process.env.NODE_ENV} ::: BASE path
+        {process.env.REACT_APP_BASE_API}
         <HelloWorld title="Hello from React webpack" />
-        <VehicleChangeComponent />
+        <VehicleChangeComponent preFilledData={vehicleData} />
       </div>
     );
   }

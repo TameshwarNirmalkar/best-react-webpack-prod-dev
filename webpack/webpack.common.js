@@ -8,6 +8,11 @@ const commonPaths = require('./paths');
 
 module.exports = {
   entry: commonPaths.entryPath,
+  stats: {
+    colors: true,
+    env: true,
+    logging: 'verbose',
+  },
   module: {
     rules: [
       {
