@@ -8,6 +8,11 @@
     // For Stylelint
     "source.fixAll.stylelint": true
   },
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "explorer.sortOrder": "type",
+  "files.trimFinalNewlines": true,
   "prettier.jsxBracketSameLine": true,
   "javascript.format.insertSpaceAfterConstructor": true,
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
@@ -15,5 +20,19 @@
   "typescript.format.semicolons": "insert",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "editor.fontSize": 14,
+  "editor.cursorSmoothCaretAnimation": true,
+  "workbench.editor.closeOnFileDelete": true,
+  "search.exclude": {
+    "**/build": true,
+    "**/dist": true,
+    "**/public": true
+  },
+  "search.showLineNumbers": true,
+  "problems.showCurrentInStatus": true,
+  "css.lint.emptyRules": "error",
+  "prettier.trailingComma": "all",
+  "typescript.format.insertSpaceAfterTypeAssertion": true,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true
 }

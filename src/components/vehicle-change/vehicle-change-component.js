@@ -26,7 +26,7 @@ const VehicleChangeComponent = (props) => {
   }, []);
 
   useEffect(() => {
-
+    console.log('\nProcess Env:::', process.env.REACT_APP_BASE_API, '\nURL:::', process.env.REACT_APP_BASE_URL, '\n ');
     // console.log('Prefilled selected Data:::', vehicleState);
     fetch(`https://jsonplaceholder.typicode.com/todos`).then(response => response.json()).then(res => {
       dispatch({
@@ -64,7 +64,6 @@ const VehicleChangeComponent = (props) => {
                 value={selectedOption}
                 onChange={handleChange}
                 options={options} />
-
             </div>
             <div className="col">
               Select Variant

@@ -7,5 +7,6 @@ const envs = {
 };
 /* eslint-disable global-require,import/no-dynamic-require */
 const env = envs[process.env.NODE_ENV || 'development'];
+console.log('ENVIRONMENT::::::::::::::::::::::::', env, 'ENVS:::::', envs);
 const envConfig = require(`./webpack/webpack.${env}.js`);
 module.exports = webpackMerge(common, envConfig);
